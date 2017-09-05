@@ -9,5 +9,5 @@ class Event < ApplicationRecord
    validates :includes_food, presence:true
    validates :includes_drinks, presence:true
    validates :starts_at, presence:true
-   calidates :active, presence:true
+   validates :active, presence:true
 end
