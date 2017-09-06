@@ -4,9 +4,12 @@ before_action :authenticate_user!, except: [:show]
 
 def index
   @events = current_user.events
+
 end
 
-def show; end
+def show
+@categories = @event.categories
+end
 
 def new
   @event = current_user.events.build
@@ -22,7 +25,11 @@ def create
   end
 end
 
-def edit; end
+def event_params
+  params.require(:event).permit(category_ids: [])
+end
+
+# REXML::Document.new(File.read("path/to/file"))def edit;
 
 def update
   if @event.update(event_params)
