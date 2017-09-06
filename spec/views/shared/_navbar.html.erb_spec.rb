@@ -21,5 +21,12 @@ describe "shared/_navbar.html.erb" do
       expect(rendered).to have_content profile.first_name
       expect(rendered).to have_content profile.last_name
     end
+    it "allows navigation from the listing page to the detail page" do
+  visit event_url
+
+  click_link "View"
+
+  expect(current_path).to eq(room_path(room))
+end
   end
 end
