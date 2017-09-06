@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :event do
     name              "House"
-    description       { Faker::Lorem.sentence(40) }
+    description       { Faker::Lorem.sentence(400) }
     location          "Amsterdam"
     price             { Faker::Commerce.price }
     capacity          2

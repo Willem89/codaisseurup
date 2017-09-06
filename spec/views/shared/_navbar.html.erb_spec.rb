@@ -26,7 +26,7 @@ describe "shared/_navbar.html.erb" do
 
   click_link "View"
 
-  expect(current_path).to eq(room_path(room))
+  expect(current_path).to eq(event_path(event))
 end
   end
 end
