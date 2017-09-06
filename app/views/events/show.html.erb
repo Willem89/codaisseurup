@@ -1,14 +1,14 @@
 <div class="panel panel-primary">
-  <div class="panel-heading"><%= @event.listing_name %></div>
+  <div class="panel-heading"><%= @event.name %></div>
 
   <div class="panel-body">
 
-    <p>Address: <%= @event.address %></p>
+    <p>Location <%= @event.location %></p>
     <p>Host: <%= @event.user.email %></p>
 
     <!-- Main Info -->
     <h4>Main Info</h4>
-    <p>Home Type: <%= @event.home_type %></p>
+    <p>Capacity: <%= @event.capacity %></p>
     <p><%= @event.capacity %> <%= @event.capacity > 1 ? "Guests" : "Guest" %></p>
 
 
@@ -26,10 +26,3 @@
   </div>
 
 </div>
-
-<!-- Themes -->
-<h4>Categories</h4>
-<% @Categories.each do |category| %>
-  <span class="label label-success"><%= category.name %></span>
-<% end %>
-<%= link_to "Back", event_path, class: "btn btn-default" %>
