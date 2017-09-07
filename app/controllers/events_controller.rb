@@ -30,7 +30,9 @@ def event_params
 end
 
 # REXML::Document.new(File.read("path/to/file"))def edit;
-
+def beauty_line
+  puts "-"*50
+end
 def update
   if @event.update(event_params)
     redirect_to @event, notice: "Event updated"

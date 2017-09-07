@@ -26,11 +26,11 @@
 
   <div class="form-group">
     <label>Starts At</label>
-      <%= f.select :starts_at, (1..24), prompt: "...", class: "form-control" %> <%= f.select :capacity, (00..59), prompt: "...", class: "form-control" %>
+      <%= f.datetime_field :starts_at, class: "form-control"%>
   </div>
   <div class="form-group">
     <label>Ends At</label>
-      <%= f.select :ends_at, (1..24), prompt: "...", class: "form-control" %> <%= f.select :capacity, (00..59), prompt: "...", class: "form-control" %>
+      <%= f.datetime_field :ends_at, class: "form-control"%>
   </div>
 
 <p> --------------------------------------------------------------------------------</p>

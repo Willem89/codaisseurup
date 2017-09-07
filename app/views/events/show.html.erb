@@ -6,15 +6,24 @@
     <p>Location <%= @event.location %></p>
     <p>Host: <%= @event.user.email %></p>
 
+    <p>----------</p>
+
+    <p>Starts at: <%= @event.starts_at%></p>
+    <p>Ends at: <%= @event.ends_at%></p>
+
+    <p>----------</p>
     <!-- Main Info -->
     <h4>Main Info</h4>
     <p>Capacity: <%= @event.capacity %></p>
     <p><%= @event.capacity %> <%= @event.capacity > 1 ? "Guests" : "Guest" %></p>
 
+    <p>----------</p>
 
     <!-- About -->
     <h4>About</h4>
     <p><%= @event.description %></p>
+
+    <p>----------</p>
 
     <!-- Amenities -->
     <h4>Amenities</h4>
@@ -25,6 +34,5 @@
 
   </div>
 
-</div>
 
 <%= link_to "Back", events_path, class: "btn btn-default" %>
