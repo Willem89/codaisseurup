@@ -41,12 +41,7 @@
 
   </div>
 
-  <label>Publish this Event?</label>
-
-  <div class="form-group">
-    <%= f.check_box :active %> Active
-  </div>
-
+<p> --------------------------------------------------------------------------------</p>
 
   <label>Categories</label>
 
@@ -55,7 +50,16 @@
     <%= b.check_box(class: "check_box") %> <%= b.object.name %>
   </div>
 <% end %>
-<div class="actions">
-  <%= f.submit "Save", class: "btn btn-primary" %>
-</div>
+
+<p> --------------------------------------------------------------------------------</p>
+
+<label>Publish this place?</label>
+
+  <div class="form-group">
+    <%= f.check_box :active %> Active
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  </div>
 <% end %>
