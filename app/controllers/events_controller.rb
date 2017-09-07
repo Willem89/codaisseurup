@@ -9,6 +9,7 @@ end
 
 def show
 @categories = @event.categories
+@photos = @event.photos
 end
 
 def new
@@ -20,6 +21,15 @@ def create
 
   if @event.save
     redirect_to @event, notice: "Event created"
+  else
+    render :new
+  end
+  if @event.save
+    image_params.each do |image|
+      @event.photos.create(image: image)
+    end
+
+    redirect_to edit_event_path(@event), notice: "Event successfully created"
   else
     render :new
   end
@@ -39,6 +49,23 @@ def update
   else
     render :edit
   end
+  if @event.update(event_params)
+  image_params.each do |image|
+    @event.photos.create(image: image)
+  end
+
+  redirect_to edit_event_path(@event), notice: "event successfully updated"
+else
+  render :edit
+end
+end
+
+def edit
+  if current_user.id == @event.user.id
+    @photos = @event.photos
+  else
+    redirect_to root_path, notice: "You don't have permission."
+  end
 end
 
 private
@@ -52,5 +79,8 @@ def event_params
     .require(:event)
     .permit(
     :name,:description,:location,:price,:capacity,:includes_food,:includes_drinks,:starts_at,:ends_at,:active)
+end
+def image_params
+  params[:images].present? ? params.require(:images) : []
 end
 end
