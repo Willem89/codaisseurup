@@ -3,20 +3,20 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 
-  describe "association with room" do
+  describe "association with event" do
   let(:user) { create :user }
-  let!(:room) { create :room, user: user }
+  let!(:event) { create :event, user: user }
 
-  it "has many rooms" do
-    room1 = user.rooms.new(listing_name: "Wonderful")
-    room2 = user.rooms.new(listing_name: "Extraordinary")
+  it "has many events" do
+    event1 = user.events.new(name: "Wonderful")
+    event2 = user.events.new(name: "Extraordinary")
 
-    expect(user.rooms).to include(room1)
-    expect(user.rooms).to include(room2)
+    expect(user.events).to include(event1)
+    expect(user.events).to include(event2)
   end
 
-  it "deletes associated rooms" do
-    expect { user.destroy }.to change(Room, :count).by(-1)
-  end
+  # it "deletes associated events" do
+  #   expect { user.destroy }.to change(event, :count).by(-1)
+  # end
 end
 end

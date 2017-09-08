@@ -1,4 +1,5 @@
-<%= form_for @event do |f| %>
+
+<%= form_for @event, html: { multipart: true } do |f| %>
   <div class="form-group">
     <label>Event</label>
     <%= f.text_field :name, placeholder: "", class: "form-control" %>
@@ -38,7 +39,10 @@
 
 
   <div class="form-group">
-
+    <%= f.check_box :includes_food %> Food
+  </div>
+  <div class="form-group">
+    <%= f.check_box :includes_drinks %> Drinks
   </div>
 
 <p> --------------------------------------------------------------------------------</p>
@@ -51,6 +55,20 @@
   </div>
 <% end %>
 
+
+<label>Photos</label>
+
+<div class="form-group">
+  <span class="btn btn-default">
+    Upload Photos
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+  </span>
+</div>
+
+<div id="photos">
+  <%= render 'photos/list' %>
+</div>
+
 <p> --------------------------------------------------------------------------------</p>
 
 <label>Publish this place?</label>
@@ -61,5 +79,7 @@
 
   <div class="actions">
     <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= link_to "Back", events_path, class: "btn btn-default" %>
   </div>
+
 <% end %>

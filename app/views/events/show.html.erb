@@ -34,11 +34,20 @@
 
   </div>
 
+  <h4>Categories</h4>
+  <% @categories.each do |theme| %>
+    <span class="label label-success"><%= category.name %></span>
+  <% end %>
+
   <!-- Photos -->
-<h4>Photos</h4>
-<% @event.photos.each do |photo| %>
-  <%= image_tag photo.image %>
-<% end %>
+  <h4>Photos</h4>
+  <% @event.photos.each do |photo| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= image_tag photo.image.thumbnail %>
+    </div>
+  </div>
+  <% end %>
 
 <div>
 <%= link_to "Back", events_path, class: "btn btn-default" %>

@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
+
   before_action :set_event, only: [:show, :edit, :update]
-before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show]
 
 def index
   @events = current_user.events
@@ -8,26 +9,22 @@ def index
 end
 
 def show
-@categories = @event.categories
-@photos = @event.photos
+  @categories = @event.categories
+  @photos = @event.photos
 end
 
 def new
   @event = current_user.events.build
 end
 
+
 def create
   @event = current_user.events.build(event_params)
 
-  if @event.save
-    redirect_to @event, notice: "Event created"
-  else
-    render :new
-  end
-  if @event.save
-    image_params.each do |image|
-      @event.photos.create(image: image)
-    end
+    if @event.save
+      image_params.each do |image|
+        @event.photos.create(image: image)
+      end
 
     redirect_to edit_event_path(@event), notice: "Event successfully created"
   else
@@ -35,29 +32,16 @@ def create
   end
 end
 
-def event_params
-  params.require(:event).permit(category_ids: [])
-end
+  def update
+    if @event.update(event_params)
+        image_params.each do |image|
+          @event.photos.create(image: image)
+        end
 
-# REXML::Document.new(File.read("path/to/file"))def edit;
-def beauty_line
-  puts "-"*50
-end
-def update
-  if @event.update(event_params)
-    redirect_to @event, notice: "Event updated"
-  else
+          redirect_to edit_event_path(@event), notice: "Event successfully updated"
+      else
     render :edit
-  end
-  if @event.update(event_params)
-  image_params.each do |image|
-    @event.photos.create(image: image)
-  end
-
-  redirect_to edit_event_path(@event), notice: "event successfully updated"
-else
-  render :edit
-end
+    end
 end
 
 def edit
@@ -70,6 +54,9 @@ end
 
 private
 
+def image_params
+  params[:images].present? ? params.require(:images) : []
+end
 def set_event
   @event = Event.find(params[:id])
 end
@@ -78,9 +65,7 @@ def event_params
   params
     .require(:event)
     .permit(
-    :name,:description,:location,:price,:capacity,:includes_food,:includes_drinks,:starts_at,:ends_at,:active)
-end
-def image_params
-  params[:images].present? ? params.require(:images) : []
+    :name, :description, :location, :price, :capacity,
+    :includes_food, :includes_drinks, :starts_at, :ends_at, :active)
 end
 end
